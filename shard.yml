@@ -1,0 +1,10 @@
+name: crystal-bindata
+version: 0.1.0
+
+authors:
+  - hkdnet <hkdnet@users.noreply.github.com>
+dependencies:
+  optarg:
+        github: mosop/optarg
+
+license: MIT

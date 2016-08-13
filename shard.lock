@@ -1,0 +1,6 @@
+version: 1.0
+shards:
+  optarg:
+    github: mosop/optarg
+    version: 0.2.6
+
