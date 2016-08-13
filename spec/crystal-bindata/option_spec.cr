@@ -35,4 +35,20 @@ describe Crystal::Bindata::Option do
       it "returns #{kase[:dir]}" { subject.dir.should eq kase[:dir] }
     end
   end
+
+  describe "#filename" do
+    describe "with .cr" do
+      subject = Crystal::Bindata::Option.parse(%w(foo -d foo-bar -n piyo))
+      it "returns with .cr" do
+        subject.filename.should eq "piyo.cr"
+      end
+    end
+
+    describe "with .cr" do
+      subject = Crystal::Bindata::Option.parse(%w(foo -d foo-bar -n piyo.cr))
+      it "returns with .cr" do
+        subject.filename.should eq "piyo.cr"
+      end
+    end
+  end
 end
