@@ -51,4 +51,11 @@ describe Crystal::Bindata::Option do
       end
     end
   end
+
+  describe "#src_dir" do
+    subject = Crystal::Bindata::Option.parse(%w(foo -d foo-bar -n piyo))
+    it "returns foo" do
+      subject.src_dir.should eq "foo"
+    end
+  end
 end

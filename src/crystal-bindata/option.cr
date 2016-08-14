@@ -2,6 +2,7 @@ require "optarg"
 
 module Crystal::Bindata
   class Option < Optarg::Model
+    arg "src_dir"
     string %w(-d --dst)
     string %w(-n --name)
 
