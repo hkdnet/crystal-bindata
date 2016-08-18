@@ -1,7 +1,7 @@
 module Crystal::Bindata::Models
   class Container
     getter namespace : String
-    property name : String
+    getter name : String
     getter resources : Array(Resource)
 
     def initialize(@namespace, @name)
@@ -11,8 +11,7 @@ module Crystal::Bindata::Models
     end
 
     def to_class(indent = 0, heredoc = "EOS")
-      class_name = namespace == "" ? name : "#{namespace}::#{name}"
-      str = ["class #{class_name}"]
+      str = ["class #{qualified_class_name}"]
       str << "  def self.asset(key)"
       resources.sort_by(&.name).each_with_index do |e, i|
         str << "    " + e.to_value_str(i)
@@ -25,6 +24,18 @@ module Crystal::Bindata::Models
       str << "  end"
       str << "end"
       str.join("\n").split("\n").map { |e| " " * indent + e }.join("\n")
+    end
+
+    def qualified_class_name
+      if namespace == "" || namespace == "."
+        name
+      else
+        "#{namespace}::#{name}"
+      end
+    end
+
+    def name=(val)
+      @name = val.camelcase
     end
 
     def add_resource(resource)

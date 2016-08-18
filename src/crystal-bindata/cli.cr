@@ -10,7 +10,7 @@ module Crystal::Bindata
     def run
       container = Crystal::Bindata::Models::ContainerFactory.create(opts.src_dir, opts.dst)
       container.name = opts.name
-      container.dump_at(opts.dst)
+      container.dump_at(".")
     end
   end
 end

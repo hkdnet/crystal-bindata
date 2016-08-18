@@ -3,7 +3,7 @@ require "optarg"
 module Crystal::Bindata
   class Option < Optarg::Model
     arg "src_dir", required: true
-    string %w(-d --dst), required: true
+    string %w(-d --dst), default: " "
     string %w(-n --name), required: true
 
     @parsed : Bool
