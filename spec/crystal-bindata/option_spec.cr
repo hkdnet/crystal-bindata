@@ -3,14 +3,14 @@ require "../spec_helper"
 describe Crystal::Bindata::Option do
   describe ".parse" do
     it "parse -d" do
-      opt = Crystal::Bindata::Option.parse(%w(foo -d bar))
+      opt = Crystal::Bindata::Option.parse(%w(foo -d bar -n foobar))
 
       opt.d.should eq "bar"
       opt.dst.should eq opt.d
     end
 
     it "parse --dst" do
-      opt = Crystal::Bindata::Option.parse(%w(foo --dst bar))
+      opt = Crystal::Bindata::Option.parse(%w(foo --dst bar -n foobar))
 
       opt.d.should eq "bar"
       opt.dst.should eq opt.d
@@ -24,7 +24,7 @@ describe Crystal::Bindata::Option do
     { input: "foo_bar-foo_bar", namespace: "FooBar", class_name: "FooBar", dir: "foo_bar/" },
   ]
   cases.each do |kase|
-    subject = Crystal::Bindata::Option.parse(["foo", "-d", "#{kase[:input]}"])
+    subject = Crystal::Bindata::Option.parse(["foo", "-d", "#{kase[:input]}", "-n", "foobar"])
     describe "#namespace" do
       it "returns #{kase[:namespace]}" { subject.namespace.should eq kase[:namespace] }
     end
