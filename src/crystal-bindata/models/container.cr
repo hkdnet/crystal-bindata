@@ -1,7 +1,7 @@
 module Crystal::Bindata::Models
   class Container
     getter namespace : String
-    getter name : String
+    property name : String
     getter resources : Array(Resource)
 
     def initialize(@namespace, @name)
