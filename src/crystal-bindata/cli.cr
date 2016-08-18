@@ -12,13 +12,5 @@ module Crystal::Bindata
       container.name = opts.name
       container.dump_at(opts.dst)
     end
-
-    def self.file_to_str(path)
-      File.read(path)
-    end
-
-    def file_to_str(path)
-      self.file_to_str(path)
-    end
   end
 end
